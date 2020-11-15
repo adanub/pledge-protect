@@ -1,34 +1,37 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        pledge-protect
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+    <div id="map">
+       
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+
+export default {
+  data: () => ({
+    map: null
+  }),
+  methods: {
+    InitialiseMap() {
+      this.map = this.$L.map('map').fitWorld();
+
+      this.$L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          maxZoom: 18,
+          id: 'newuser83/ckhigdse01lyk19qs9k4t7ivh',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'pk.eyJ1IjoibmV3dXNlcjgzIiwiYSI6ImNraGlnY3R0ODBhMXMyc3A1ZzY0c3B3OG0ifQ.DyeQQ_lv81eFHSbabPthLw'
+      }).addTo(this.map);
+
+      this.map.locate({setView: true, maxZoom: 16});
+    }
+  },
+  mounted() {
+    setTimeout(this.InitialiseMap(), 50);
+  }
+}
+
 </script>
 
 <style>
@@ -37,6 +40,13 @@ export default {}
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+#map {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  z-index: 2;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;

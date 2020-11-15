@@ -7,7 +7,7 @@ export default {
     title: 'pledge-protect',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
@@ -36,6 +36,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    'nuxt-leaflet'
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
