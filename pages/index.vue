@@ -3,7 +3,9 @@
     <div id="map"></div>
     <div class="content-box">
       <app-logo class="app-logo"/>
-      <h1 class="title"><b class="pledge-pink">Pledge</b> & <b class="pledge-pink">Protect</b></h1>
+      <h1 class="title">
+        <b class="pledge-pink">Pledge</b> & <b class="pledge-pink">Protect</b>
+      </h1>
       <button  class="dropdown-button" onclick="this.blur();"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
       <button class="about-button" onclick="this.blur();">What's this about?</button>
     </div>
@@ -88,11 +90,16 @@ export default {
 }
 .about-button:hover, .about-button:focus {
   outline: none;
-  background-color: #3B413C;
+  background-color: rgba(59, 65, 60, 1);
   color: #f5f5f5;
 
   letter-spacing: 0.05rem;
   transition: 0.2s;
+}
+.about-button:active {
+  background-color: rgba(59, 65, 60, 0.9);
+  letter-spacing: -0.01rem;
+  transition: 0.1s;
 }
 
 .dropdown-button {
@@ -147,17 +154,11 @@ export default {
   width: 90vw;
   min-height: 200px;
   min-width: 300px;
+  max-width: 512px;
   z-index: 3;
   border-radius: 16px;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
   top: 16px;
   padding: 18px;
-}
-
-@screen sm {
-  .content-box {
-    width: 80vw;
-    max-width: 600px;
-  }
 }
 </style>
