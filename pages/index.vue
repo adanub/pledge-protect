@@ -4,8 +4,8 @@
     <div class="content-box">
       <app-logo class="app-logo"/>
       <h1 class="title"><b class="pledge-pink">Pledge</b> & <b class="pledge-pink">Protect</b></h1>
-      <dropdown class="dropdown-button"/>
-      <button class="about-button">What's this about?</button>
+      <button  class="dropdown-button" onclick="this.blur();"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
+      <button class="about-button" onclick="this.blur();">What's this about?</button>
     </div>
   </div>
 </template>
@@ -86,19 +86,25 @@ export default {
 
   transition: 0.1s;
 }
-
-.dropdown-button {
-  position: absolute;
-  right: 8px;
-  top: 8px;
-}
-
-.about-button:hover {
+.about-button:hover, .about-button:focus {
+  outline: none;
   background-color: #3B413C;
   color: #f5f5f5;
 
   letter-spacing: 0.05rem;
   transition: 0.2s;
+}
+
+.dropdown-button {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  transition: 0.2s;
+}
+.dropdown-button:hover, .dropdown-button:focus {
+  outline: none;
+  top: 3px;
 }
 
 .container {
