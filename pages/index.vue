@@ -36,9 +36,16 @@ export default {
   methods: {
     //Sets up and starts loading the interactive map
     InitialiseMap() {
+      //Max bounds for the map, restricting view to NSW area
+      var southWest = L.latLng(-36.959208, 140.929096),
+            northEast = L.latLng(-28.246520, 153.628294),
+            bounds = L.latLngBounds(southWest, northEast);
+
       var mapOptions = {
+        maxBounds: bounds,
         center: [31.2532, 146.9211],
-        zoom: 16,
+        minZoom: 9,
+        maxZoom: 14,
         zoomControl: true,
         attributionControl: false
       }
@@ -46,14 +53,14 @@ export default {
       this.map = this.$L.map('map', mapOptions).fitWorld();
       this.map.zoomControl.setPosition('bottomleft');
       this.$L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-          maxZoom: 18,
           id: 'newuser83/ckhigdse01lyk19qs9k4t7ivh',
           tileSize: 512,
           zoomOffset: -1,
           accessToken: 'pk.eyJ1IjoibmV3dXNlcjgzIiwiYSI6ImNraGlnY3R0ODBhMXMyc3A1ZzY0c3B3OG0ifQ.DyeQQ_lv81eFHSbabPthLw'
       }).addTo(this.map);
-      this.map.flyTo(new this.$L.LatLng(-33.8688, 151.2093), 8);
-      this.map.locate({setView: true, maxZoom: 14});
+      
+      this.map.flyTo(new this.$L.LatLng(-33.8688, 151.2093));
+      this.map.locate({setView: true});
     }
   },
   mounted() {
