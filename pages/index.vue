@@ -14,7 +14,7 @@
       <button class="about-button" onclick="this.blur();">What's this about?</button>
 
       <div class="button-container">
-        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
+        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();" v-on:click="GeneratePins()"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
         <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block">&nbsp;Protect</div></button></div>
       </div>
 
@@ -80,27 +80,23 @@ export default {
 
     //Generates 3 pledge pins, and 3 protect pins at random locations on the screen
     GeneratePins() {
+      var mapBounds = this.map.getBounds();
+      console.log("Map bounds x: " + mapBounds.getEast() + " || " + mapBounds.getWest());
+      console.log("Map bounds y: " + mapBounds.getNorth() + " || " + mapBounds.getSouth());
+
       //Pledge Pins
-      for (i = 0; i < 3; i++) {
-        var mapBounds = this.map.getBounds();
+      for (var i = 0; i < 3; i++) {
+        //Randomised longitude within view
+        var lngMagnitude = mapBounds.getEast() - mapBounds.getWest();
+        var lng = (Math.random() * lngMagnitude) + mapBounds.getWest();
 
         //Randomised latitude within view
-        var latMagnitude = mapBounds.getEast() - mapBounds.getWest();
-        var lat = Math.floor((Math.random() * latMagnitude) + mapBounds.getWest());
+        var latMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
+        var lat = (Math.random() * latMagnitude) + mapBounds.getSouth();
 
-        //Randomised longitude within view
-        var lngMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
-        var lng = Math.floor((Math.random() * lngMagnitude) + mapBounds.getSouth());
-
-        var latlng = this.$L.latLng(lat, lng);
-        var pixelPosition = this.map.latLngToLayerPoint(latlng);
-        console.log("Generated pledge position: " + pixelPosition);
+        console.log("Location: " + lat + ", " + lng);
+        this.CreatePledgePin('pledge' + i, lat, lng);
       }
-
-      var PledgeClass = Vue.extend(PledgePin);
-      var instance = new PledgeClass({
-        propsData: { id: 'pledge1' }
-      });
     },
 
     CreatePledgePin(pinId,  lat, lng) {
@@ -113,13 +109,11 @@ export default {
       
       this.$L.marker([lat, lng]).addTo(this.map); //Reference marker
       this.$L.marker([lat, lng], {icon: pledgeIcon}).addTo(this.map);
-
-      var mapBounds = this.map.getBounds();
     }
   },
   mounted() {
     setTimeout(this.InitialiseMap(), 50); //calls InitialiseMap() 50ms after the page finishes loading
-    setTimeout(this.CreatePledgePin("pledge1", -33.8688, 151.2093), 500);
+    //setTimeout(this.GeneratePins(), 3000);
   }
 }
 </script>
