@@ -1,17 +1,23 @@
 <template>
   <div class="container">
-    <div id="map"></div>
+    <div id="map"><div ref="pins" class="pins-holder"></div></div>
+    
     <div class="content-box">
       <app-logo class="app-logo"/>
+      
       <h1 class="title">
         <b class="pledge-pink">Pledge</b> & <b class="pledge-pink">Protect</b>
       </h1>
+      
       <button  class="dropdown-button" onclick="this.blur();"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
+      
       <button class="about-button" onclick="this.blur();">What's this about?</button>
+
       <div class="button-container">
         <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
         <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block">Protect</div></button></div>
       </div>
+
     </div>
   </div>
 </template>
@@ -22,16 +28,25 @@ import AppLogo from '~/components/Logo.vue'
 import ProtectIcon from '~/components/ProtectIcon.vue'
 import PledgeIcon from '~/components/PledgeIcon.vue'
 
+import ProtectPin from '~/components/ProtectPin.vue'
+import PledgePin from '~/components/PledgePin.vue'
+
+import Vue from 'vue'
+
 export default {
   components: {
     Dropdown,
     AppLogo,
     ProtectIcon,
-    PledgeIcon
+    PledgeIcon,
+    PledgePin,
+    ProtectPin
   },
 
   data: () => ({
-    map: null
+    map: null,
+    pledgePins: [null, null, null],
+    protectPins: [null, null, null]
   }),
   methods: {
     //Sets up and starts loading the interactive map
@@ -43,12 +58,12 @@ export default {
 
       var mapOptions = {
         maxBounds: bounds,
-        center: [31.2532, 146.9211],
+        center: [-33.8688, 151.2093],
         minZoom: 9,
         maxZoom: 14,
         zoomControl: true,
         attributionControl: false
-      }
+      };
 
       this.map = this.$L.map('map', mapOptions).fitWorld();
       this.map.zoomControl.setPosition('bottomleft');
@@ -61,15 +76,63 @@ export default {
       
       this.map.flyTo(new this.$L.LatLng(-33.8688, 151.2093));
       this.map.locate({setView: true});
+    },
+
+    //Generates 3 pledge pins, and 3 protect pins at random locations on the screen
+    GeneratePins() {
+      //Pledge Pins
+      for (i = 0; i < 3; i++) {
+        var mapBounds = this.map.getBounds();
+
+        //Randomised latitude within view
+        var latMagnitude = mapBounds.getEast() - mapBounds.getWest();
+        var lat = Math.floor((Math.random() * latMagnitude) + mapBounds.getWest());
+
+        //Randomised longitude within view
+        var lngMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
+        var lng = Math.floor((Math.random() * lngMagnitude) + mapBounds.getSouth());
+
+        var latlng = this.$L.latLng(lat, lng);
+        var pixelPosition = this.map.latLngToLayerPoint(latlng);
+        console.log("Generated pledge position: " + pixelPosition);
+      }
+
+      var PledgeClass = Vue.extend(PledgePin);
+      var instance = new PledgeClass({
+        propsData: { id: 'pledge1' }
+      });
+    },
+
+    CreatePledgePin(pinId,  pointX, pointY) {
+      var PledgeClass = Vue.extend(PledgePin);
+      var instance = new PledgeClass({
+        propsData: { 
+          id: pinId,
+          posX: pointX,
+          posY: pointY
+        }
+      });
+      instance.$mount();
+      this.$refs.pins.appendChild(instance.$el);
+
+      var mapBounds = this.map.getBounds();
     }
   },
   mounted() {
     setTimeout(this.InitialiseMap(), 50); //calls InitialiseMap() 50ms after the page finishes loading
+    setTimeout(this.CreatePledgePin("pledge1", 50, 500), 500);
   }
 }
 </script>
 
 <style>
+.pins-holder {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 405;
+}
+
 .pledge-button-icon {
   position: absolute;
   margin-left: auto;
@@ -270,7 +333,7 @@ export default {
   min-height: 200px;
   min-width: 300px;
   max-width: 512px;
-  z-index: 3;
+  z-index: 5;
   border-radius: 16px;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
   top: 16px;
