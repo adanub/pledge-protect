@@ -1,5 +1,5 @@
 <template>
-    <a href="" class="pin" :style="style">
+    <a href="" class="pin-marker">
         <svg width="65" height="86" viewBox="0 0 65 86" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g filter="url(#filter0_d)">
             <path d="M32.0416 52.0577C45.3123 52.0577 56.0704 41.2996 56.0704 28.0289C56.0704 14.7581 45.3123 4 32.0416 4C18.7708 4 8.0127 14.7581 8.0127 28.0289C8.0127 41.2996 18.7708 52.0577 32.0416 52.0577Z" fill="#F34A63"/>
@@ -25,23 +25,3 @@
         </svg>
     </a>
 </template>
-
-<script>
-export default {
-    name: 'PledgePin',
-    props: [
-        'id',
-        'posX',
-        'posY'
-    ],
-    computed: {
-        style: function() {
-            return  {
-                'left': this.posX + 'px',
-                'top': this.posY + 'px',
-                'position': 'absolute'
-            }
-        }
-    }
-}
-</script>
