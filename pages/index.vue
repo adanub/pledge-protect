@@ -15,7 +15,7 @@
 
       <div class="button-container">
         <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
-        <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block">Protect</div></button></div>
+        <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block">&nbsp;Protect</div></button></div>
       </div>
 
     </div>
@@ -104,6 +104,21 @@ export default {
     },
 
     CreatePledgePin(pinId,  pointX, pointY) {
+      var PledgeClass = Vue.extend(PledgePin);
+      var instance = new PledgeClass({
+        propsData: { 
+          id: pinId,
+          posX: pointX,
+          posY: pointY
+        }
+      });
+      instance.$mount();
+      this.$refs.pins.appendChild(instance.$el);
+
+      var mapBounds = this.map.getBounds();
+    },
+
+    CreatePledgeMarker(pinId,  pointX, pointY) {
       var PledgeClass = Vue.extend(PledgePin);
       var instance = new PledgeClass({
         propsData: { 
