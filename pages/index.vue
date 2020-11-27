@@ -81,8 +81,11 @@ export default {
         //Randomised longitude within view
         var lngMagnitude = mapBounds.getEast() - mapBounds.getWest();
         var magnitudeMultiplier = 1.0; //Going to use this to half magnitude to left side of screen if sea is visible
-        if (mapBounds.getEast() > 151.352562) {
+        //Rough guess-timate of whether or not pin spawn area is out at sea based on Sydney
+        if (mapBounds.getEast() > 151.698530) {
           magnitudeMultiplier = 0.5;
+        } else if (mapBounds.getEast() > 151.486357) {
+          magnitudeMultiplier = 0.75;
         }
         var lng = (Math.random() * lngMagnitude * 0.26 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.26 * i * magnitudeMultiplier);
 
