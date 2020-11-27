@@ -81,6 +81,8 @@ export default {
 
       //Pledge Pins
       for (var i = 0; i < 3; i++) {
+        var lng = new Object();
+        var lat = new Object();
         //Randomised longitude within view
         var lngMagnitude = mapBounds.getEast() - mapBounds.getWest();
         var magnitudeMultiplier = 1.0; //Going to use this to half magnitude to left side of screen if sea is visible
@@ -90,16 +92,19 @@ export default {
         } else if (mapBounds.getEast() > 151.486357) {
           magnitudeMultiplier = 0.75;
         }
-        var lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
+        lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
 
         //Randomised latitude within view
         var latMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
-        var lat = (Math.random() * latMagnitude * 0.6) + mapBounds.getSouth() + latMagnitude * 0.1;
+        lat = (Math.random() * latMagnitude * 0.6) + mapBounds.getSouth() + latMagnitude * 0.1;
 
         this.CreatePledgePin(i, lat, lng);
+        //setTimeout(() => this.CreatePledgePin(i, lat, lng), 200 * i);
       }
       //Protect Pins
       for (var i = 0; i < 3; i++) {
+        var lng = new Object();
+        var lat = new Object();
         //Randomised longitude within view
         var lngMagnitude = mapBounds.getEast() - mapBounds.getWest();
         var magnitudeMultiplier = 1.0; //Going to use this to half magnitude to left side of screen if sea is visible
@@ -107,13 +112,14 @@ export default {
           magnitudeMultiplier = 0.5;
         }
         //var lng = (Math.random() * lngMagnitude * 0.26 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.26 * i * magnitudeMultiplier);
-        var lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
+        lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
 
         //Randomised latitude within view
         var latMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
-        var lat = (Math.random() * latMagnitude * 0.6) + mapBounds.getSouth() + latMagnitude * 0.1;
+        lat = (Math.random() * latMagnitude * 0.6) + mapBounds.getSouth() + latMagnitude * 0.1;
 
         this.CreateProtectPin(i + 3, lat, lng);
+        //setTimeout(() => this.CreateProtectPin(i + 3, lat, lng), (200 * i) + 100);
       }
     },
 
@@ -155,19 +161,21 @@ export default {
 
 <style>
 .leaflet-div-icon {
-  background: none;
+  background: transparent;
   border: none;
-  position: absolute;
   outline: none;
+  overflow: visible;
 }
 
 .pin-marker {
+  z-index: inherit;
   position: absolute;
   width: 65px;
   height: 86px;
   left: -32.5px;
   top: -74px;
   transition: all 0.2s cubic-bezier(0.47, 1.64, .41, .8);
+  overflow: visible;
 
   animation: 0.3s popup1;
 }
@@ -292,12 +300,12 @@ export default {
 }
 .pledge-button:hover, .pledge-button:focus {
   outline: none;
-  margin-top: -7px;
+  transform: translateY(-4px);
 
   transition: 0.1s;
 }
 .pledge-button:active {
-  margin-top: 0px;
+  transform: translateY(3px);
   transition: 0.1s;
 }
 
@@ -331,12 +339,12 @@ export default {
 }
 .protect-button:hover, .protect-button:focus {
   outline: none;
-  margin-top: -7px;
+  transform: translateY(-4px);
 
   transition: 0.1s;
 }
 .protect-button:active {
-  margin-top: 0px;
+  transform: translateY(3px);
   transition: 0.1s;
 }
 
