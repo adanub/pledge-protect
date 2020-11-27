@@ -87,7 +87,7 @@ export default {
         } else if (mapBounds.getEast() > 151.486357) {
           magnitudeMultiplier = 0.75;
         }
-        var lng = (Math.random() * lngMagnitude * 0.26 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.26 * i * magnitudeMultiplier);
+        var lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.1 * magnitudeMultiplier);
 
         //Randomised latitude within view
         var latMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
