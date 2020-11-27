@@ -14,7 +14,7 @@
       <button class="about-button" onclick="this.blur();">What's this about?</button>
 
       <div class="button-container">
-        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();" v-on:click="GeneratePins()"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
+        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
         <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block">&nbsp;Protect</div></button></div>
       </div>
 
@@ -70,6 +70,9 @@ export default {
       
       this.map.flyTo(new this.$L.LatLng(-33.8688, 151.2093));
       this.map.locate({setView: true});
+
+      this.map.on('moveend', () => this.GeneratePins());
+      console.log("map initialised");
     },
 
     //Generates 3 pledge pins, and 3 protect pins at random locations on the screen
@@ -87,7 +90,7 @@ export default {
         } else if (mapBounds.getEast() > 151.486357) {
           magnitudeMultiplier = 0.75;
         }
-        var lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.1 * magnitudeMultiplier);
+        var lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
 
         //Randomised latitude within view
         var latMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
@@ -103,7 +106,8 @@ export default {
         if (mapBounds.getEast() > 151.352562) {
           magnitudeMultiplier = 0.5;
         }
-        var lng = (Math.random() * lngMagnitude * 0.26 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.26 * i * magnitudeMultiplier);
+        //var lng = (Math.random() * lngMagnitude * 0.26 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.26 * i * magnitudeMultiplier);
+        var lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
 
         //Randomised latitude within view
         var latMagnitude = mapBounds.getNorth() - mapBounds.getSouth();
@@ -143,7 +147,8 @@ export default {
   },
   mounted() {
     setTimeout(this.InitialiseMap(), 50); //calls InitialiseMap() 50ms after the page finishes loading
-    //setTimeout(this.GeneratePins(), 3000);
+    //setTimeout(() => this.GeneratePins(), 500);
+    //window.setInterval(() => this.GeneratePins(), 3000);
   }
 }
 </script>
