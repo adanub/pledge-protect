@@ -1,8 +1,8 @@
 <template>
-    <div class="post-container" id="pledge-post">
-        <div class="blurred-background crossfade1"></div>
+    <div class="post-container post-inactive" id="pledge-post">
+        <div class="blurred-background crossfade1" @click="ClosePledgePost()"></div>
         <div class="content-box shrink">
-            <div class="top-bar">Pledge<button v-on:click="ClosePledgePost()"><close-icon class="close-button"/></button></div>
+            <div class="top-bar">Pledge<button @click="ClosePledgePost()"><close-icon class="close-button"/></button></div>
             <app-logo class="applogo" :width="113.75" :height="122.55"/>
             <div class="writing text-grey text-4xl text-left sm:text-center">I, Harrison, <br> from Inner City, <br> pledge to...</div>
             <div class="pt-8 writing pledge-pink text-3xl text-left sm:text-center">Physical distance. <br> Practice good hygeine.</div>
