@@ -4,12 +4,6 @@
     </button></client-only>
 </template>
 
-<style scoped>
-    path {
-        margin-left: -9px;
-    }
-</style>
-
 <script>
 export default {
     methods: {

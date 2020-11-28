@@ -1,29 +1,30 @@
 <template>
-    <div class="post-container post-inactive" id="pledge-post">
-        <div class="blurred-background crossfade1" @click="ClosePledgePost()"></div>
+    <div class="post-container post-inactive" id="protect-post">
+        <div class="blurred-background crossfade1" @click="CloseProtectPost()"></div>
         <div class="content-box shrink">
-            <div class="top-bar">Pledge<button @click="ClosePledgePost()"><close-icon class="close-button"/></button></div>
-            <app-logo class="applogo" :width="113.75" :height="122.55"/>
-            <div class="writing text-grey text-4xl text-left sm:text-center">I, Harrison, <br> from Inner City, <br> pledge to...</div>
-            <div class="pt-8 writing pledge-pink text-3xl text-left sm:text-center">Physical distance. <br> Practice good hygeine.</div>
-            <div class=" pt-8 writing text-grey text-4xl text-left sm:text-center">I'm pledging for...</div>
-            <div class="pt-8 writing pledge-pink text-3xl text-left sm:text-center">The good of the community.</div>
+            <div class="top-bar">Protect<button @click="CloseProtectPost()"><close-icon class="close-button"/></button></div>
+
+            <div class="writing header1 protect-green">Jared</div>
+            <div class="writing location">from Western Sydney</div>
+            <div class="image-holder"><img src="img/jared_profile.png"></div>
+            <div class="writing header2 protect-green">Who am I?</div>
+            <div class="writing paragraph text-grey">This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!</div>
+            <div class="writing header2 protect-green">Why am I here?</div>
+            <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and being diabetic, and he will likely fall seriously ill if he catches it.</div>
         </div>
     </div>
 </template>
 
 <script>
 import CloseIcon from '~/components/Icons/CloseIcon.vue'
-import AppLogo from '~/components/Icons/Logo.vue'
 
 export default {
     components: {
-        CloseIcon,
-        AppLogo
+        CloseIcon
     },
     methods: {
-        ClosePledgePost() {
-            var post = document.getElementById('pledge-post');
+        CloseProtectPost() {
+            var post = document.getElementById('protect-post');
             if (post != null) {
                 post.classList.add('post-inactive');
             }
@@ -33,6 +34,58 @@ export default {
 </script>
 
 <style scoped>
+    .image-holder {
+        width: 82%;
+        max-width: 500px;
+        padding-bottom: 0;
+        max-height: 200px;
+        border-radius: 11px;
+        overflow: hidden;
+        background-color: #0FA78E;
+        margin: 10px auto;
+    }
+    .image-holder img {
+        width: 100%;
+    }
+
+    .header1 {
+        font-size: 32px;
+        line-height: 34px;
+        text-align: left;
+        font-weight: 700;
+
+        margin-top: 40px;
+    }
+
+    .location {
+        font-family: 'Kalam', cursive;
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: 400;
+        text-align: left;
+        color: #3B413C;
+
+        margin-top: 10px;
+    }
+
+    .header2 {
+        font-size: 18px;
+        line-height: 18px;
+        text-align: left;
+        font-weight: 700;
+
+        margin-top: 30px;
+    }
+
+    .paragraph {
+        font-size: 16px;
+        line-height: 24px;
+        text-align: left;
+        font-weight: 400;
+
+        margin-top: 15px;
+    }
+
     .post-container {
         margin: 0 auto;
         min-height: 100vh;
@@ -84,13 +137,8 @@ export default {
     }
 
     .writing {
-        font-family: 'Kalam', cursive;
         padding-left: 10%;
         padding-right: 10%;
-    }
-
-    .applogo {
-        margin: 60px auto;
     }
 
     .close-button {
@@ -107,7 +155,7 @@ export default {
 
     .top-bar {
         width: 100%;
-        background-color: #F34A63;
+        background-color: #0FA78E;
         height: 38px;
 
         position: absolute;
@@ -154,6 +202,6 @@ export default {
         padding-top: 18px;
         padding-bottom: 18px;
         overflow: hidden;
-        margin-left: auto;
+        font-family: 'Heebo', sans-serif;
     }
 </style>
