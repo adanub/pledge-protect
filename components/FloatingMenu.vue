@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import Dropdown from '~/components/Dropdown.vue'
-import AppLogo from '~/components/Logo.vue'
-import ProtectIcon from '~/components/ProtectIcon.vue'
-import PledgeIcon from '~/components/PledgeIcon.vue'
+import Dropdown from '~/components/Icons/Dropdown.vue'
+import AppLogo from '~/components/Icons/Logo.vue'
+import ProtectIcon from '~/components/Icons/ProtectIcon.vue'
+import PledgeIcon from '~/components/Icons/PledgeIcon.vue'
 
 export default {
     components: {
@@ -62,6 +62,7 @@ export default {
 
   color: rgba(59, 65, 60, 0.7);
   font-family: 'Kalam', cursive;
+  font-weight: 700;
   font-size: 18px;
   padding-top: 6px;
 
@@ -103,6 +104,8 @@ export default {
 
   color: white;
   font-family: 'Kalam', cursive;
+  font-weight: 700;
+  letter-spacing: 0.03rem;
   font-size: 18px;
   padding-top: 6px;
   padding-left: 24px;
@@ -141,6 +144,8 @@ export default {
 
   color: white;
   font-family: 'Kalam', cursive;
+  font-weight: 700;
+  letter-spacing: 0.03rem;
   font-size: 18px;
   padding-top: 6px;
   padding-left: 24px;
