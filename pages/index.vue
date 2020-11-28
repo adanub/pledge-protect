@@ -9,12 +9,15 @@
 
 <script>
 import FloatingMenu from '~/components/FloatingMenu.vue'
+
 import PledgePost from '~/components/PledgePost.vue'
 import ProtectPost from '~/components/ProtectPost.vue'
+
 import PledgePin from '~/components/Buttons/PledgePin.vue'
 import ProtectPin from '~/components/Buttons/ProtectPin.vue'
-
 import Vue from 'vue' //Needed for runtime instantiation of components (map pins)
+
+import About1 from '~/components/About1.vue'
 
 export default {
   components: {

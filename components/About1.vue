@@ -1,12 +1,8 @@
 <template>
-    <div class="post-container post-inactive" id="protect-post">
+    <div class="post-container" id="protect-post">
         <div class="blurred-background crossfade1" @click="CloseProtectPost()"></div>
-        <div class="content-box shrink">
-            <div class="top-bar">
-                <svg class="top-logo" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0061 3.75401L26.2503 7.66816C26.2503 7.66816 25.8824 15.5119 24.1843 18.8926C21.0843 25.0643 15.2991 26.278 15.0061 26.3359V26.3381L15.0003 26.337L14.9946 26.3381V26.3359C14.7015 26.278 8.91636 25.0643 5.81631 18.8926C4.11818 15.5119 3.75031 7.66816 3.75031 7.66816L14.9946 3.75401V3.75L15.0003 3.752L15.0061 3.75V3.75401V3.75401ZM21.2224 20.6905H8.77826C8.77826 17.2564 11.5663 14.4684 15.0003 14.4684C18.4344 14.4684 21.2224 17.2564 21.2224 20.6905V20.6905ZM15.0003 7.65972C16.6243 7.65972 17.9427 8.97813 17.9427 10.602C17.9427 12.2259 16.6243 13.5444 15.0003 13.5444C13.3764 13.5444 12.058 12.2259 12.058 10.602C12.058 8.97813 13.3764 7.65972 15.0003 7.65972Z" fill="white"/> </svg> 
-                Protect
-                <button @click="CloseProtectPost()"><close-icon class="close-button"/></button>
-            </div>
+        <div class="content-box crossfade1">
+            <div class="top-bar">Protect<button @click="CloseProtectPost()"><close-icon class="close-button"/></button></div>
 
             <div class="writing header1 protect-green">Jared</div>
             <div class="writing location">from Western Sydney</div>
@@ -27,10 +23,10 @@ export default {
         CloseIcon
     },
     methods: {
-        CloseProtectPost() {
-            var post = document.getElementById('protect-post');
-            if (post != null) {
-                post.classList.add('post-inactive');
+        NextPage() {
+            var page = document.getElementById('about1');
+            if (page != null) {
+                page.classList.add('page-inactive');
             }
         }
     }
@@ -38,14 +34,6 @@ export default {
 </script>
 
 <style scoped>
-    .top-logo {
-        position: absolute;
-        top: 4px;
-        left: 7px;
-        width: 30px;
-        height: 30px;
-    }
-
     .image-holder {
         width: 82%;
         max-width: 500px;
@@ -105,7 +93,7 @@ export default {
         justify-content: center;
         align-items: center;
         text-align: center;
-        transition: 0.5s ease-out;
+        transition: 1s ease-out;
         width: 100vw;
     }
 
