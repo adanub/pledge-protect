@@ -71,7 +71,7 @@ export default {
         if (mapBounds.getEast() > 151.698530) {
           magnitudeMultiplier = 0.5;
         } else if (mapBounds.getEast() > 151.486357) {
-          magnitudeMultiplier = 0.75;
+          magnitudeMultiplier = 0.68;
         }
         lng = (Math.random() * lngMagnitude * 0.26 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 + (lngMagnitude * 0.26 * i * magnitudeMultiplier);
        // lng = (Math.random() * lngMagnitude * 0.8 * magnitudeMultiplier) + mapBounds.getWest() + lngMagnitude * 0.1 * magnitudeMultiplier;
