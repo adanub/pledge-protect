@@ -95,11 +95,13 @@ export default {
         max-height: 200px;
         border-radius: 11px;
         overflow: hidden;
-        background-color: #0FA78E;
         margin: 10px auto;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.25);
     }
     .image-holder img {
+        position: relative;
         width: 100%;
+        z-index: -2;
     }
 
     .header1 {
