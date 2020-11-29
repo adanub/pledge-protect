@@ -18,12 +18,37 @@
                 <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();" @click="NextPage()"><div class="inline-block">Help keep Jared safe</div></button></div>
             </div>
             <div id="protectpost2" class="inactive">
-                <div class="writing header2 protect-green">To help keep Jared safe,</div>
-                <button class="dropdown" on-click="this.blur();">
+                <button class="back-button" onclick="this.blur()" @click="PrevPage()">
+                    <svg class="back-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.25 4.5L6.75 9L11.25 13.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> 
+                    Back
+                </button>
+                <div class="writing pt-6 header2 protect-green mb-2">To help keep Jared safe,</div>
+                <button id="dropdown1" class="dropdown collapsed" onclick="this.blur();" @click="ToggleDropdown(1)">
                     <svg class="absolute" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 6L9 17L4 12" stroke="#0FA78E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> 
                     <p class="dropdown-title">Practice physical distancing</p>
                     <dropdown class="dropdown-icon"/>
+                    <div class="dropdown-info">
+                        The more space between you and others, the harder it is for the virus to spread.  It is important that everyone continues to stay 1.5 metres away from others wherever possible.
+                    </div>
                 </button>
+                <button id="dropdown2" class="dropdown collapsed" onclick="this.blur();" @click="ToggleDropdown(2)">
+                    <svg class="absolute" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 6L9 17L4 12" stroke="#0FA78E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> 
+                    <p class="dropdown-title">Only go out when neccessary</p>
+                    <dropdown class="dropdown-icon"/>
+                    <div class="dropdown-info">
+                        Limit the number of places you visit and stay close to home as much as possible. Only go out for necessary items such as for food, medical care and essential transportation.  Keep gatherings virtual or via telephone where you can.
+                    </div>
+                </button>
+                <button id="dropdown3" class="dropdown collapsed" onclick="this.blur();" @click="ToggleDropdown(3)">
+                    <svg class="absolute" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 6L9 17L4 12" stroke="#0FA78E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> 
+                    <p class="dropdown-title">Wear a mask in public spaces</p>
+                    <dropdown class="dropdown-icon"/>
+                    <div class="dropdown-info">
+                        NSW Health strongly recommends you carry a clean mask with you at all times. Wearing face masks are highly recommended, especially in high-risk indoor areas such as public transport,supermarkets, restaurants and pubs.
+                    </div>
+                </button>
+                <p class="writing pt-6 font-bold text-left">Spread the message, and share the good vibes!</p>
+                <div class="pledge-button-base float-right"><button class="pledge-button" onclick="this.blur();"><div class="inline-block">Make a pledge</div></button></div>
             </div>
         </div>
     </div>
@@ -71,28 +96,153 @@ export default {
             } else {
                 console.log("Protect post pages could not be found in the DOM");
             }
+
+            //Collapsing all dropdowns named appropriately as id='dropdown1', id='dropdown2', etc.
+            var dropdownAvailable = true;
+            var currentIndex = 0;
+            while (dropdownAvailable) {
+                currentIndex += 1;
+                var dropdown = document.getElementById('dropdown' + currentIndex);
+
+                if (dropdown != null) {
+                    dropdown.classList.add('collapsed');
+                } else {
+                    dropdownAvailable = false;
+                }
+            }
+        },
+
+        ToggleDropdown(index) {
+            var dropdown = document.getElementById('dropdown' + index);
+
+            if (dropdown != null) {
+                if (dropdown.classList.contains('collapsed')) {
+                    dropdown.classList.remove('collapsed');
+                } else {
+                    dropdown.classList.add('collapsed');
+                }
+            } else {
+                console.log("Dropdown could not be found in the DOM. Ensure it has its id set correctly.")
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+    .pledge-button-base {
+        position: relative;
+        background-color: #D64157;
+        border-radius: 8px;
+
+        margin: 40px 12%;
+        height: 52px;
+        min-width: 261px;
+        width: 76%;
+
+        bottom: 20px;
+    }
+    .pledge-button {
+        background-color: #F34A63;
+        border-radius: 8px;
+
+        color: white;
+        font-family: 'Kalam', cursive;
+        font-weight: 700;
+        letter-spacing: 0.03rem;
+        font-size: 18px;
+        padding-top: 6px;
+
+        margin: -4px auto;
+        height: 52px;
+        min-width: 261px;
+        width: 100%;
+
+        transition: 0.1s;
+    }
+    .pledge-button:hover, .pledge-button:focus {
+        outline: none;
+        transform: translateY(-4px);
+
+        transition: 0.1s;
+    }
+    .pledge-button:active {
+        transform: translateY(3px);
+    }
+
+    .dropdown-info {
+        font-family: 'Heebo', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        text-align: left;
+        margin-top: 30px;
+        margin-left: 12%;
+        margin-right: 12%;
+        margin-bottom: 10px;
+    }
+
+    .back-arrow {
+        display: inline;
+        margin-bottom: 2px;
+        margin-left: -10px;
+    }
+
+    .back-button {
+        position: absolute;
+        margin-top: 7px;
+        left: 10%;
+        align-content: left;
+        align-items: left;
+        justify-content: left;
+        width: 81px;
+        height: 28px;
+        border-radius: 6px;
+        background-color: #0FA78E;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+        color: white;
+        font-size: 15px;
+    }
+    .back-button:hover, .back-button:focus {
+        outline: none;
+        transform: scale(1.1);
+
+        transition: 0.3s;
+    }
+    .back-button:active {
+        transform: scale(0.9);
+        background-color: #0C8A75;
+    }
+
+    .dropdown-icon {
+        transform: rotateZ(0deg);
+        transition: 0.3s;
+    }
+    .collapsed .dropdown-icon {
+        transform: rotateZ(180deg);
+        transition: 0.3s;
+    }
+
     .dropdown-title {
         position: absolute;
-        margin-left: 40px;
+        margin-left: 8%;
+        margin-top: 2px;
+        font-size: 15px;
     }
 
     .dropdown-icon {
         float: right;
         right: 8px;
+        margin-top: -12px;
+        margin-right: -8px;
     }
 
     .dropdown {
         padding: 9px;
         background-color: #F6F6F6;
         border-radius: 12px;
-        width: 90%;
-        height: 39px;
+        width: 80%;
+        min-height: 39px;
+        max-height: 260px;
         margin: 10px 5%;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
         outline: none;
@@ -100,6 +250,10 @@ export default {
         font-weight: 700;
         font-size: 16px;
         overflow: hidden;
+        vertical-align: text-top;
+    }
+    .dropdown.collapsed {
+        max-height: 39px;
     }
 
     #protectpost1 {
