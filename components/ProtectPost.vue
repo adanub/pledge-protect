@@ -15,7 +15,7 @@
                 <div class="writing paragraph text-grey">This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!</div>
                 <div class="writing header2 protect-green">Why am I here?</div>
                 <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and having chronic medical conditions, and he will likely fall seriously ill if he catches it.</div>
-                <div class="protect-button-base float-right"><button class="protect-button disable-select" onclick="this.blur();" @click="NextPage()"><div class="inline-block">Help keep Jared safe</div></button></div>
+                <div class="protect-button-base float-right disable-select"><button class="protect-button" onclick="this.blur();" @click="NextPage()"><div class="inline-block">Help keep Jared safe</div></button></div>
             </div>
             <div id="protectpost2" class="inactive">
                 <button class="back-button disable-select" onclick="this.blur()" @click="PrevPage()">
@@ -366,12 +366,19 @@ export default {
     }
 
     .paragraph {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 15px;
+        line-height: 19px;
         text-align: left;
         font-weight: 400;
 
         margin-top: 15px;
+    }
+
+    @screen sm {
+        .paragraph {
+            font-size: 16px;
+            line-height: 24px;
+        }
     }
 
     .post-container {
