@@ -1,12 +1,12 @@
 <template>
-    <div class="content-box">
+    <div id="floating-menu-dropdown" class="content-box">
       <app-logo class="app-logo"/>
       
       <h1 class="title disable-select">
         <b class="pledge-pink">Pledge</b> & <b class="pledge-pink">Protect</b>
       </h1>
       
-      <button  class="dropdown-button disable-select" onclick="this.blur();"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
+      <button  class="dropdown-button disable-select" onclick="this.blur();" @click="ToggleDropdown()"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
       
       <button class="about-button disable-select" onclick="this.blur();">What's this about?</button>
 
@@ -29,6 +29,21 @@ export default {
         AppLogo,
         ProtectIcon,
         PledgeIcon
+    },
+    methods: {
+      ToggleDropdown() {
+            var dropdown = document.getElementById('floating-menu-dropdown');
+
+            if (dropdown != null) {
+                if (dropdown.classList.contains('collapsed')) {
+                    dropdown.classList.remove('collapsed');
+                } else {
+                    dropdown.classList.add('collapsed');
+                }
+            } else {
+                console.log("Dropdown could not be found in the DOM. Ensure it has its id set correctly.")
+            }
+        }
     }
 }
 </script>
@@ -179,12 +194,30 @@ export default {
   position: absolute;
   right: 8px;
   top: 8px;
-
+  transform: scale(1);
   transition: 0.2s;
 }
 .dropdown-button:hover, .dropdown-button:focus {
   outline: none;
-  top: 3px;
+  transform: scale(1.3);
+  transition: 0.2s;
+}
+.dropdown-button:active {
+  outline: none;
+  transform: scale(0.9);
+  transition: 0.2s;
+}
+.collapsed .dropdown-button {
+  transform: rotateZ(180deg);
+  transition: 0.3s ease-in-out;
+}
+.collapsed .dropdown-button:hover, .collapsed .dropdown-button:focus {
+  outline: none;
+  transform: scale(1.3) rotateZ(180deg);
+}
+.collapsed .dropdown-button:active {
+  outline: none;
+  transform: scale(0.9);
 }
 
 .content-box {
@@ -192,7 +225,7 @@ export default {
   position: absolute;
   background-color: #f5f5f5;
   width: 90vw;
-  min-height: 200px;
+  height: 200px;
   min-width: 300px;
   max-width: 512px;
   z-index: 5;
@@ -201,6 +234,13 @@ export default {
   top: 16px;
   padding-top: 18px;
   padding-bottom: 18px;
+  overflow: hidden;
+
+  transition: height 0.3s ease-out;
+}
+.content-box.collapsed {
+  height: 65px;
+  transition: height 0.3s ease-out;
 }
 
 </style>

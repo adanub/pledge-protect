@@ -374,7 +374,7 @@ export default {
         margin-top: 15px;
     }
 
-    @screen sm {
+    @screen md {
         .paragraph {
             font-size: 16px;
             line-height: 24px;
@@ -388,13 +388,13 @@ export default {
         justify-content: center;
         align-items: center;
         text-align: center;
-        transition: 0.5s ease-out;
+        transition: 0.3s ease-out;
         width: 100vw;
     }
 
     .post-container.post-inactive {
         visibility: hidden;
-        transition: 0.5s ease-in-out;
+        transition: 0.3s ease-in-out;
     }
 
     .crossfade1 {
@@ -405,7 +405,7 @@ export default {
     .post-inactive .crossfade1 {
         visibility: hidden;
         opacity: 0;
-        transition: 0.5s ease-in-out;
+        transition: 0.3s ease-in-out;
         overflow: hidden;
     }
 
@@ -419,7 +419,7 @@ export default {
         visibility: hidden;
         transform: scale(0.5);
         opacity: 0;
-        transition: 0.5s ease-in-out;
+        transition: 0.3s ease-in-out;
     }
 
     @keyframes fade-in {

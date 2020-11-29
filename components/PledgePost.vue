@@ -8,10 +8,10 @@
                 <button @click="ClosePledgePost()"><close-icon class="close-button"/></button>
             </div>
             <app-logo class="applogo" :width="113.75" :height="122.55"/>
-            <div class="writing text-grey text-3xl sm:text-4xl text-left sm:text-center">I, Harrison, <br> from Inner City, <br> pledge to...</div>
-            <div class="pt-8 writing pledge-pink text-2xl sm:text-3xl text-left sm:text-center">Physical distance. <br> Practice good hygeine.</div>
-            <div class=" pt-8 writing text-grey text-3xl sm:text-4xl text-left sm:text-center">I'm pledging for...</div>
-            <div class="pt-8 writing pledge-pink text-2xl sm:text-3xl text-left sm:text-center">The good of the community.</div>
+            <div class="writing text-grey text-2xl sm:text-3xl text-left sm:text-center">I, Harrison, <br> from Inner City, <br> pledge to...</div>
+            <div class="pt-8 writing pledge-pink text-xl sm:text-2xl text-left sm:text-center">Physical distance. <br> Practice good hygeine.</div>
+            <div class=" pt-8 writing text-grey text-2xl sm:text-3xl text-left sm:text-center">I'm pledging for...</div>
+            <div class="pt-8 writing pledge-pink text-xl sm:text-2xl text-left sm:text-center">The good of the community.</div>
         </div>
     </div>
 </template>
@@ -69,7 +69,7 @@ export default {
     .post-inactive .crossfade1 {
         visibility: hidden;
         opacity: 0;
-        transition: 0.5s ease-in-out;
+        transition: 0.3s ease-in-out;
         overflow: hidden;
     }
 
@@ -83,7 +83,7 @@ export default {
         visibility: hidden;
         transform: scale(0.5);
         opacity: 0;
-        transition: 0.5s ease-in-out;
+        transition: 0.3s ease-in-out;
     }
 
     @keyframes fade-in {
