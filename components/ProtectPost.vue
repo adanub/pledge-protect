@@ -7,14 +7,16 @@
                 Protect
                 <button @click="CloseProtectPost()"><close-icon class="close-button"/></button>
             </div>
-
-            <div class="writing header1 protect-green">Jared</div>
-            <div class="writing location">from Western Sydney</div>
-            <div class="image-holder"><img src="img/jared_profile.png"></div>
-            <div class="writing header2 protect-green">Who am I?</div>
-            <div class="writing paragraph text-grey">This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!</div>
-            <div class="writing header2 protect-green">Why am I here?</div>
-            <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and being diabetic, and he will likely fall seriously ill if he catches it.</div>
+            <div class="page1">
+                <div class="writing header1 protect-green">Jared</div>
+                <div class="writing location">from Western Sydney</div>
+                <div class="image-holder"><img src="img/jared_profile.png"></div>
+                <div class="writing header2 protect-green">Who am I?</div>
+                <div class="writing paragraph text-grey">This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!</div>
+                <div class="writing header2 protect-green">Why am I here?</div>
+                <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and being diabetic, and he will likely fall seriously ill if he catches it.</div>
+                <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><div class="inline-block">Help keep Jared safe</div></button></div>
+            </div>
         </div>
     </div>
 </template>
@@ -38,6 +40,46 @@ export default {
 </script>
 
 <style scoped>
+    .protect-button-base {
+        position: absolute;
+        background-color: #0C8A75;
+        border-radius: 8px;
+
+        margin: 16px 12%;
+        height: 52px;
+        min-width: 261px;
+        width: 76%;
+
+        bottom: 20px;
+    }
+    .protect-button {
+        background-color: #0FA78E;
+        border-radius: 8px;
+
+        color: white;
+        font-family: 'Kalam', cursive;
+        font-weight: 700;
+        letter-spacing: 0.03rem;
+        font-size: 18px;
+        padding-top: 6px;
+
+        margin: -4px auto;
+        height: 52px;
+        min-width: 261px;
+        width: 100%;
+
+        transition: 0.1s;
+    }
+    .protect-button:hover, .protect-button:focus {
+        outline: none;
+        transform: translateY(-4px);
+
+        transition: 0.1s;
+    }
+    .protect-button:active {
+        transform: translateY(3px);
+    }
+
     .top-logo {
         position: absolute;
         top: 4px;
