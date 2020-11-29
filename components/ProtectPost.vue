@@ -7,15 +7,23 @@
                 Protect
                 <button @click="CloseProtectPost()"><close-icon class="close-button"/></button>
             </div>
-            <div class="page1">
-                <div class="writing header1 protect-green">Jared</div>
-                <div class="writing location">from Western Sydney</div>
-                <div class="image-holder"><img src="img/jared_profile.png"></div>
+            <div class="writing header1 protect-green">Jared</div>
+            <div class="writing location">from Western Sydney</div>
+            <div class="image-holder"><img src="img/jared_profile.png"></div>
+            <div id="protectpost1">
                 <div class="writing header2 protect-green">Who am I?</div>
                 <div class="writing paragraph text-grey">This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!</div>
                 <div class="writing header2 protect-green">Why am I here?</div>
-                <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and being diabetic, and he will likely fall seriously ill if he catches it.</div>
-                <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><div class="inline-block">Help keep Jared safe</div></button></div>
+                <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and having chronic medical conditions, and he will likely fall seriously ill if he catches it.</div>
+                <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();" @click="NextPage()"><div class="inline-block">Help keep Jared safe</div></button></div>
+            </div>
+            <div id="protectpost2" class="inactive">
+                <div class="writing header2 protect-green">To help keep Jared safe,</div>
+                <button class="dropdown" on-click="this.blur();">
+                    <svg class="absolute" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M20 6L9 17L4 12" stroke="#0FA78E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> 
+                    <p class="dropdown-title">Practice physical distancing</p>
+                    <dropdown class="dropdown-icon"/>
+                </button>
             </div>
         </div>
     </div>
@@ -23,16 +31,45 @@
 
 <script>
 import CloseIcon from '~/components/Icons/CloseIcon.vue'
+import Dropdown from '~/components/Icons/Dropdown.vue'
 
 export default {
     components: {
-        CloseIcon
+        CloseIcon,
+        Dropdown
     },
     methods: {
         CloseProtectPost() {
             var post = document.getElementById('protect-post');
             if (post != null) {
                 post.classList.add('post-inactive');
+                this.PrevPage();
+            } else {
+                console.log('Protect post could not be found in the DOM');
+            }
+        },
+
+        NextPage() {
+            var page1 = document.getElementById('protectpost1');
+            var page2 = document.getElementById('protectpost2');
+
+            if (page1 != null && page2 != null) {
+                page1.classList.add('inactive');
+                page2.classList.remove('inactive');
+            } else {
+                console.log("Protect post pages could not be found in the DOM");
+            }
+        },
+
+        PrevPage() {
+            var page1 = document.getElementById('protectpost1');
+            var page2 = document.getElementById('protectpost2');
+
+            if (page1 != null && page2 != null) {
+                page1.classList.remove('inactive');
+                page2.classList.add('inactive');
+            } else {
+                console.log("Protect post pages could not be found in the DOM");
             }
         }
     }
@@ -40,8 +77,49 @@ export default {
 </script>
 
 <style scoped>
-    .protect-button-base {
+    .dropdown-title {
         position: absolute;
+        margin-left: 40px;
+    }
+
+    .dropdown-icon {
+        float: right;
+        right: 8px;
+    }
+
+    .dropdown {
+        padding: 9px;
+        background-color: #F6F6F6;
+        border-radius: 12px;
+        width: 90%;
+        height: 39px;
+        margin: 10px 5%;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+        outline: none;
+        font-family: 'Kalam', cursive;
+        font-weight: 700;
+        font-size: 16px;
+        overflow: hidden;
+    }
+
+    #protectpost1 {
+        position: absolute;
+        width: 100%;
+    }
+
+    #protectpost2 {
+        position: absolute;
+        width: 100%;
+    }
+
+    .inactive {
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s ease-out;
+    }
+
+    .protect-button-base {
+        position: fixed;
         background-color: #0C8A75;
         border-radius: 8px;
 
