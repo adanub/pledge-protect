@@ -2,17 +2,17 @@
     <div class="content-box">
       <app-logo class="app-logo"/>
       
-      <h1 class="title">
+      <h1 class="title disable-select">
         <b class="pledge-pink">Pledge</b> & <b class="pledge-pink">Protect</b>
       </h1>
       
-      <button  class="dropdown-button" onclick="this.blur();"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
+      <button  class="dropdown-button disable-select" onclick="this.blur();"><dropdown/></button> <!-- Note: onclick="this.blur();" removes focused/selected state after it is pressed, gets rid of the aesthetic issue without compromising accessibility -->
       
-      <button class="about-button" onclick="this.blur();">What's this about?</button>
+      <button class="about-button disable-select" onclick="this.blur();">What's this about?</button>
 
       <div class="button-container">
-        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block">Pledge</div></button></div>
-        <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block">&nbsp;Protect</div></button></div>
+        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block disable-select">Pledge</div></button></div>
+        <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block disable-select">&nbsp;Protect</div></button></div>
       </div>
     </div>
 </template>

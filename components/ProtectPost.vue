@@ -2,23 +2,23 @@
     <div class="post-container post-inactive" id="protect-post">
         <div class="blurred-background crossfade1" @click="CloseProtectPost()"></div>
         <div class="content-box shrink">
-            <div class="top-bar">
+            <div class="top-bar disable-select">
                 <svg class="top-logo" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0061 3.75401L26.2503 7.66816C26.2503 7.66816 25.8824 15.5119 24.1843 18.8926C21.0843 25.0643 15.2991 26.278 15.0061 26.3359V26.3381L15.0003 26.337L14.9946 26.3381V26.3359C14.7015 26.278 8.91636 25.0643 5.81631 18.8926C4.11818 15.5119 3.75031 7.66816 3.75031 7.66816L14.9946 3.75401V3.75L15.0003 3.752L15.0061 3.75V3.75401V3.75401ZM21.2224 20.6905H8.77826C8.77826 17.2564 11.5663 14.4684 15.0003 14.4684C18.4344 14.4684 21.2224 17.2564 21.2224 20.6905V20.6905ZM15.0003 7.65972C16.6243 7.65972 17.9427 8.97813 17.9427 10.602C17.9427 12.2259 16.6243 13.5444 15.0003 13.5444C13.3764 13.5444 12.058 12.2259 12.058 10.602C12.058 8.97813 13.3764 7.65972 15.0003 7.65972Z" fill="white"/> </svg> 
                 Protect
                 <button @click="CloseProtectPost()"><close-icon class="close-button"/></button>
             </div>
             <div class="writing header1 protect-green">Jared</div>
             <div class="writing location">from Western Sydney</div>
-            <div class="image-holder"><img src="img/jared_profile.png"></div>
+            <div class="image-holder disable-select"><img src="img/jared_profile.png"></div>
             <div id="protectpost1">
                 <div class="writing header2 protect-green">Who am I?</div>
                 <div class="writing paragraph text-grey">This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!</div>
                 <div class="writing header2 protect-green">Why am I here?</div>
                 <div class="writing paragraph text-grey">According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and having chronic medical conditions, and he will likely fall seriously ill if he catches it.</div>
-                <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();" @click="NextPage()"><div class="inline-block">Help keep Jared safe</div></button></div>
+                <div class="protect-button-base float-right"><button class="protect-button disable-select" onclick="this.blur();" @click="NextPage()"><div class="inline-block">Help keep Jared safe</div></button></div>
             </div>
             <div id="protectpost2" class="inactive">
-                <button class="back-button" onclick="this.blur()" @click="PrevPage()">
+                <button class="back-button disable-select" onclick="this.blur()" @click="PrevPage()">
                     <svg class="back-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.25 4.5L6.75 9L11.25 13.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </svg> 
                     Back
                 </button>
@@ -48,7 +48,7 @@
                     </div>
                 </button>
                 <p class="writing pt-6 font-bold text-left">Spread the message, and share the good vibes!</p>
-                <div class="pledge-button-base float-right"><button class="pledge-button" onclick="this.blur();"><div class="inline-block">Make a pledge</div></button></div>
+                <div class="pledge-button-base float-right disable-select"><button class="pledge-button" onclick="this.blur();"><div class="inline-block">Make a pledge</div></button></div>
             </div>
         </div>
     </div>
