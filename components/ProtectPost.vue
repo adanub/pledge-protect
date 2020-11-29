@@ -246,7 +246,7 @@ export default {
         position: fixed;
         background-color: #f5f5f5;
         width: 90vw;
-        height: 90vh;
+        height: 96vh;
         min-width: 300px;
         max-width: 800px;
         z-index: 5;
