@@ -11,7 +11,7 @@
       <button class="about-button disable-select" onclick="this.blur();">What's this about?</button>
 
       <div class="button-container">
-        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();"><pledge-icon class="pledge-button-icon"/><div class="inline-block disable-select">Pledge</div></button></div>
+        <div class="pledge-button-base float-left"><button class="pledge-button" onclick="this.blur();" @click="MakeAPledge()"><pledge-icon class="pledge-button-icon"/><div class="inline-block disable-select">Pledge</div></button></div>
         <div class="protect-button-base float-right"><button class="protect-button" onclick="this.blur();"><protect-icon class="protect-button-icon"/><div class="inline-block disable-select">&nbsp;Protect</div></button></div>
       </div>
     </div>
@@ -22,27 +22,39 @@ import Dropdown from '~/components/Icons/Dropdown.vue'
 import AppLogo from '~/components/Icons/Logo.vue'
 import ProtectIcon from '~/components/Icons/ProtectIcon.vue'
 import PledgeIcon from '~/components/Icons/PledgeIcon.vue'
+import PledgeForm from '~/components/PledgeForm/1.vue'
 
 export default {
     components: {
         Dropdown,
         AppLogo,
         ProtectIcon,
-        PledgeIcon
+        PledgeIcon,
+        PledgeForm
     },
     methods: {
-      ToggleDropdown() {
-            var dropdown = document.getElementById('floating-menu-dropdown');
+      MakeAPledge() {
+        var pledge = document.getElementById('pledge-form');
+        
+        if (pledge != null) {
+            pledge.classList.remove('post-inactive');
+        } else {
+            console.log("Pledge form could not be found in the DOM. Ensure it has its id set correctly.")
+        }
+      },
 
-            if (dropdown != null) {
-                if (dropdown.classList.contains('collapsed')) {
-                    dropdown.classList.remove('collapsed');
-                } else {
-                    dropdown.classList.add('collapsed');
-                }
-            } else {
-                console.log("Dropdown could not be found in the DOM. Ensure it has its id set correctly.")
-            }
+      ToggleDropdown() {
+          var dropdown = document.getElementById('floating-menu-dropdown');
+
+          if (dropdown != null) {
+              if (dropdown.classList.contains('collapsed')) {
+                  dropdown.classList.remove('collapsed');
+              } else {
+                  dropdown.classList.add('collapsed');
+              }
+          } else {
+              console.log("Dropdown could not be found in the DOM. Ensure it has its id set correctly.")
+          }
         }
     }
 }

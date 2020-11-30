@@ -3,7 +3,7 @@
         <div class="blurred-background crossfade1" @click="CloseProtectPost()"></div>
         <div class="content-box shrink">
             <div class="top-bar disable-select">
-                <svg class="top-logo" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0061 3.75401L26.2503 7.66816C26.2503 7.66816 25.8824 15.5119 24.1843 18.8926C21.0843 25.0643 15.2991 26.278 15.0061 26.3359V26.3381L15.0003 26.337L14.9946 26.3381V26.3359C14.7015 26.278 8.91636 25.0643 5.81631 18.8926C4.11818 15.5119 3.75031 7.66816 3.75031 7.66816L14.9946 3.75401V3.75L15.0003 3.752L15.0061 3.75V3.75401V3.75401ZM21.2224 20.6905H8.77826C8.77826 17.2564 11.5663 14.4684 15.0003 14.4684C18.4344 14.4684 21.2224 17.2564 21.2224 20.6905V20.6905ZM15.0003 7.65972C16.6243 7.65972 17.9427 8.97813 17.9427 10.602C17.9427 12.2259 16.6243 13.5444 15.0003 13.5444C13.3764 13.5444 12.058 12.2259 12.058 10.602C12.058 8.97813 13.3764 7.65972 15.0003 7.65972Z" fill="white"/> </svg> 
+                <protect-icon class="top-logo" :width="24" :height="24"/>
                 Protect
                 <button @click="CloseProtectPost()"><close-icon class="close-button"/></button>
             </div>
@@ -49,6 +49,7 @@
                 </button>
                 <p class="writing pt-6 font-bold text-left">Spread the message, and share the good vibes!</p>
                 <div class="pledge-button-base float-right disable-select"><button class="pledge-button" onclick="this.blur();"><div class="inline-block">Make a pledge</div></button></div>
+                <socials class="socials m-auto"/>
             </div>
         </div>
     </div>
@@ -57,11 +58,15 @@
 <script>
 import CloseIcon from '~/components/Icons/CloseIcon.vue'
 import Dropdown from '~/components/Icons/Dropdown.vue'
+import Socials from '~/components/Icons/SocialMedia.vue'
+import ProtectIcon from '~/components/Icons/ProtectIcon.vue'
 
 export default {
     components: {
         CloseIcon,
-        Dropdown
+        Dropdown,
+        Socials,
+        ProtectIcon
     },
     methods: {
         CloseProtectPost() {
@@ -314,10 +319,8 @@ export default {
 
     .top-logo {
         position: absolute;
-        top: 4px;
-        left: 7px;
-        width: 30px;
-        height: 30px;
+        top: 7px;
+        left: 10px;
     }
 
     .image-holder {

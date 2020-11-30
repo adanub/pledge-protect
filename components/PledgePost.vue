@@ -3,13 +3,13 @@
         <div class="blurred-background crossfade1" @click="ClosePledgePost()"></div>
         <div class="content-box shrink">
             <div class="top-bar disable-select">
-                <svg class="top-logo" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3.91731 26.25C3.74595 25.8689 3.69834 25.4292 3.81134 24.9936L5.92759 16.8336C6.16226 15.9285 7.01183 15.3446 7.91286 15.4133H16.9102C17.7408 15.4133 18.5041 15.6356 19.1038 16.0658C19.2138 16.1097 19.3218 16.1636 19.4264 16.2274L22.6503 18.192L22.2237 12.2747C22.1538 11.3031 22.8857 10.4575 23.8573 10.3875C24.8289 10.3174 25.6745 11.0494 25.7445 12.021L26.4339 21.5857C26.4668 22.0415 26.3231 22.4695 26.061 22.8029C25.4405 23.8141 24.1162 24.1337 23.1023 23.5159L20.4029 21.8708V26.25H9.40937L16.0041 22.1245C17.0126 21.4935 17.3193 20.1624 16.6883 19.1539C16.0574 18.1454 14.7263 17.8387 13.7178 18.4698L8.60599 21.6675L8.43704 22.3191L13.9788 18.935C14.7322 18.475 15.7174 18.7131 16.1774 19.4666C16.6376 20.2199 16.3994 21.2052 15.6459 21.6652L8.13776 26.25H3.91731ZM13.4958 3.75C16.4911 3.75 18.923 6.18188 18.923 9.17723C18.923 12.1726 16.4911 14.6045 13.4958 14.6045C10.5004 14.6045 8.06853 12.1726 8.06853 9.17723C8.06853 6.18188 10.5004 3.75 13.4958 3.75Z" fill="white"/> </svg> 
+                <pledge-icon class="top-logo" :width="27" :height="25"/>
                 Pledge
                 <button @click="ClosePledgePost()"><close-icon class="close-button"/></button>
             </div>
             <app-logo class="applogo" :width="113.75" :height="122.55"/>
             <div class="writing text-grey text-2xl sm:text-3xl text-left sm:text-center">I, Harrison, <br> from Inner City, <br> pledge to...</div>
-            <div class="pt-8 writing pledge-pink text-xl sm:text-2xl text-left sm:text-center">Physical distance. <br> Practice good hygeine.</div>
+            <div class="pt-8 writing pledge-pink text-xl sm:text-2xl text-left sm:text-center">Physical distance. <br> Practice good hygeine. <br> Wear a mask. </div>
             <div class=" pt-8 writing text-grey text-2xl sm:text-3xl text-left sm:text-center">I'm pledging for...</div>
             <div class="pt-8 writing pledge-pink text-xl sm:text-2xl text-left sm:text-center">The good of the community.</div>
         </div>
@@ -19,11 +19,13 @@
 <script>
 import CloseIcon from '~/components/Icons/CloseIcon.vue'
 import AppLogo from '~/components/Icons/Logo.vue'
+import PledgeIcon from '~/components/Icons/PledgeIcon.vue'
 
 export default {
     components: {
         CloseIcon,
-        AppLogo
+        AppLogo,
+        PledgeIcon
     },
     methods: {
         ClosePledgePost() {
@@ -39,10 +41,8 @@ export default {
 <style scoped>
     .top-logo {
         position: absolute;
-        top: 3px;
-        left: 7px;
-        width: 30px;
-        height: 30px;
+        top: 7px;
+        left: 9px;
     }
 
     .post-container {

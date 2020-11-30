@@ -1,9 +1,11 @@
 <template>
   <div class="container">
-    <div id="map"><div ref="pins" class="pins-holder"></div></div>
+    <div id="map" class="disable-select">
+    <div ref="pins" class="pins-holder"></div></div>
     <floating-menu/>
-    <pledge-post class="post"/>
-    <protect-post class="post"/>
+    <pledge-post class="modal-window"/>
+    <protect-post class="modal-window"/>
+    <pledge-form class="modal-window"/>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ import PledgePin from '~/components/Buttons/PledgePin.vue'
 import ProtectPin from '~/components/Buttons/ProtectPin.vue'
 import Vue from 'vue' //Needed for runtime instantiation of components (map pins)
 
-import About1 from '~/components/About1.vue'
+import PledgeForm from '~/components/PledgeForm/1.vue'
 
 export default {
   components: {
@@ -25,12 +27,40 @@ export default {
     PledgePost,
     ProtectPost,
     PledgePin,
-    ProtectPin
+    ProtectPin,
+    PledgeForm
   },
 
   data: () => ({
+    //-----------------------------------------Map and Pins------------------------------------------
     map: null,
-    pinMarkers: new Array(6)
+    pinMarkers: new Array(6),
+
+    //-------------------------------------Pledge/Protect Posts-------------------------------------
+    allPosts: [ //A placeholder as there is currently no database to dynamically get post data from
+      { //Post 1
+        name: "Jared",
+        location: "Western Sydney",
+        who: "This is my dad, Jared. He loves his veggie garden, and tends to it every morning, rain or shine. He's the most caring person I know, and I really want to help him stay safe during this pandemic!",
+        why: "According to official information from NSW Health, Jared is vulnerable to COVID-19 due to his age and having chronic medical conditions, and he will likely fall seriously ill if he catches it."
+      },
+      { //Post 2
+        name: "Doan",
+        location: "Western Sydney",
+        who: "My dad was a refugee who fled Vietnam by boat at the end of the Vietnam War. He migrated entirely to a new country with barely any grasp on English, money or resources. He has been working hard for decades to provide a better life for my sisters and me.  He gave me the world. I want the chance to give him the world back. But I am worried about what could happen to my dad if he catches COVID because of his old and health conditions. Please help me protect my dad!",
+        why: "According to official information from NSW Health, Doan is vulnerable to COVID-19 as he is over 65 with a chronic medical condition. He is likely to fall seriously ill if he catches the virus."
+      },
+      { //Post 3
+        name: "Susan",
+        location: "Newcastle",
+        who: "My mum is an awesome woman that has lived around the world, explored many different careers, and always tried to do the best for me and my sibling. She loves being out in nature and has an energy to life that is difficult to rival. I’m worried that she may catch COVID while shopping or at a park and have a pretty bad time from it. I would really appreciate if you can help keep my mum safe.",
+        why: "According to official information from NSW Health, Susan is vulnerable to COVID-19 as she has a chronic medical condition. She is moderately likely to fall seriously ill if she catches the virus."
+      }
+    ]
+
+    //-------------------------------------Pledge/Protect Forms-------------------------------------
+    
+
   }),
   methods: {
     //Sets up and starts loading the interactive map
@@ -179,7 +209,7 @@ export default {
 </script>
 
 <style>
-.post {
+.modal-window {
   position: absolute;
   left: 0;
 
